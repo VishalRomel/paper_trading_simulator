@@ -6,6 +6,7 @@
 </head>
 
 <body>
+
   <canvas id="myChart"></canvas>
     <h1>Chart</h1>
   <!-- <script>
@@ -29,16 +30,18 @@
     </script> -->
 
   <script>
-    axios.get('http://localhost:3000/av')
+
+    axios.post('http://localhost:3000/av', {stock: 'chpt'})
     .then(response => {
       // response.data contains response from API
         console.log(response.data)
         var data = response.data;
         ////////////////////////////////////////////////////////////////
-        // Extract needed data
-        let week = 1;
-        const labels = data.map(item => week++) 
-        const prices = data.map(item => item['4. close'])
+        // Extract labels and data 
+        const labels = data.map(item => item.week);
+        labels.reverse();
+        const prices = data.map(item => item.price);
+        prices.reverse();
 
         // Create chart data
         const chartData = {
@@ -51,12 +54,12 @@
             tension: 0.1
             }
         ]
-        }
+        };
 
         // Get canvas context
         const ctx = document.getElementById('myChart').getContext('2d');
 
-        // Create Chart instance
+        // Create chart
         const myChart = new Chart(ctx, {
         type: 'line',
         data: chartData,
@@ -68,8 +71,6 @@
             }
         }
         });
-
-
 
         ////////////////////////////////////////////////////////////////
     });
