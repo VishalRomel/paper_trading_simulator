@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+</head>
+
+<body>
+  <canvas id="myChart"></canvas>
+    <h1>Chart</h1>
+  <!-- <script>
+    fetch('http://localhost:3000/av')
+      .then(res => res.json())  
+      .then(data => {
+        const labels = Object.keys(data);
+        const values = Object.values(data).map(obj => obj['4. close']);
+
+        new Chart(document.getElementById('myChart'), {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [{ 
+              data: values,
+              borderColor: '#333'
+            }]
+          }
+        });
+      });
+    </script> -->
+
+  <script>
+    axios.get('http://localhost:3000/av')
+    .then(response => {
+      // response.data contains response from API
+        console.log(response.data)
+        var data = response.data;
+        ////////////////////////////////////////////////////////////////
+        // Extract needed data
+        let week = 1;
+        const labels = data.map(item => week++) 
+        const prices = data.map(item => item['4. close'])
+
+        // Create chart data
+        const chartData = {
+        labels: labels,
+        datasets: [
+            {
+            label: 'Weekly Stock Prices',
+            data: prices,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+            }
+        ]
+        }
+
+        // Get canvas context
+        const ctx = document.getElementById('myChart').getContext('2d');
+
+        // Create Chart instance
+        const myChart = new Chart(ctx, {
+        type: 'line',
+        data: chartData,
+        options: {
+            scales: {
+            y: {
+                beginAtZero: false
+            }
+            }
+        }
+        });
+
+
+
+        ////////////////////////////////////////////////////////////////
+    });
+  </script>
+
+</body>
+</html>
