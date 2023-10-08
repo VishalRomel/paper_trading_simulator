@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Homepage</title>
+  <link href="styles.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <div class="sideBar">
+    <ul>
+      <div id="logo">
+        <img src="placeholder" alt="company logo" height="80px">
+      </div>
+      <div class="searchBtn">
+        <button class="search">
+          <img src="searchBar.png" alt="search" width="40" id="searchBar">
+        </button>
+        <input type="text" class="input" placeholder="Search for Stocks">
+      </div>
+      <script src="script.js"></script>
+
+      <div><button class="click" id="portfolio">
+          <!--onclick="document.getElementById('test').style.display='none'"
+            -->Portfolio
+        </button></div>
+      <div><button class="click" id="buy">Buy</button></div>
+      <div><button class="click" id="sell">Sell</button></div>
+      <div><button class="click" id="signOut">Sign out</button>
+      </div>
+    </ul>
+  </div>
+
+  <div width="100%" id="greeting">
+    <h1>Hello, [name]!</h1>
+    <a href = "buy.html">Buy</a>
+  </div>
+
+  <div id="test" class="infoBar">
+    <table width="100%">
+      <tr class="topBar">
+        <th colspan="2">Total value</th>
+        <th colspan="2">Today</th>
+        <th colspan="2">Buying power</th>
+      </tr>
+      <tr class="topBar">
+        <td colspan="2">$1,000,000</th>
+        <td colspan="2" id="currentDate">[data]</th>
+        <td colspan="2">[data]</th>
+      </tr>
+      <tr>
+        <th>Symbol</th>
+        <th>Shares</th>
+        <th>Value</th>
+        <th>Today's return</th>
+        <th>Return</th>
+        <th>Return with sells</th>
+        <th>
+          <!-- <Price /Share</div>
+          -->
+        </th>
+      </tr>
+    </table>
+  </div>
+
+  <div width="100%" class="portfolio">
+    <div class="protfolio" id="username">
+      <h1>Your Information</h1>
+      <p><Strong>Name:<span id="name">Placeholder</span></Strong></p>
+      <p><Strong>Money Own:<span id="moneyOwn">Placeholder</span> </Strong></p>
+      <p><Strong>Stock Own:<span id="stockOwn">Placeholder</span></Strong></p>
+    </div>
+    <div class="stockList">
+      <table width="100%" class="stocks">
+        <tr>
+          <th>Stocks</th>
+          <th>Current Value</th>
+          <th>Value When You Bought</th>
+          <th>Value Changed</th>
+        </tr>
+        <tr>
+          <td>stock 1</td>
+          <td>Place Holder</td>
+          <td>Place Holder</td>
+          <td># %</td>
+        </tr>
+        <tr>
+          <td>stock 2</td>
+          <td>Place Holder</td>
+          <td>Place Holder</td>
+          <td># %</td>
+        </tr>
+      </table>
+
+    </div>
+
+  </div>
+
+
+
+
+  <script src="script.js"></script>
+
+
+
+</body>
+
+</html>
