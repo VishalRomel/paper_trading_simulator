@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lottie Animation</title>
+    <!-- Include Lottie library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.2/lottie.min.js"></script>
+    <style>
+        /* Add CSS styles as needed */
+        .lottie-container {
+            width: 300px; /* Adjust the width as needed */
+            height: 300px; /* Adjust the height as needed */
+        }
+    </style>
+</head>
+<body>
+    <div class="lottie-container"></div>
+
+    <script>
+        // Get the container element where the animation will be displayed
+        const container = document.querySelector(".lottie-container");
+
+        // Load the Lottie animation from the provided URL
+        lottie.loadAnimation({
+            container: container, // Specify the container element
+            renderer: "svg", // Choose the renderer (svg, canvas, html)
+            loop: true, // Set whether the animation should loop
+            autoplay: true, // Set whether the animation should play automatically
+            path: "https://lottie.host/ead30130-60e5-449a-aa0c-215a260fe802/8JqoBnNIw1.json", // Provide the URL of the animation JSON
+        });
+    </script>
+</body>
+</html>
