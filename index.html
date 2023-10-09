@@ -563,34 +563,42 @@
 			const prices = data.map(item => item.price);
 			prices.reverse();
 	
-			// Create chart data
 			const chartData = {
-			labels: labels,
-			datasets: [
-				{
-				label: 'Weekly Stock Prices',
-				data: prices,
-				borderColor: 'rgb(75, 192, 192)',
-				tension: 0.1
-				}
-			]
-			};
-	
-			// Get canvas context
-			const ctx = document.getElementById('myChart'+i).getContext('2d');
-	
-			// Create chart
-			const myChart = new Chart(ctx, {
-			type: 'line',
-			data: chartData,
-			options: {
-				scales: {
-				y: {
-					beginAtZero: false
-				}
-				}
-			}
-			});
+				labels: labels,
+				datasets: [
+				  {
+					label: 'Weekly Stock Prices',
+					data: prices,
+					borderColor: 'rgba(0, 128, 0, 1)', // Green color
+					backgroundColor: 'rgba(0, 0, 0, 0)', // Transparent fill
+					tension: 0.1,
+					pointBackgroundColor: 'rgba(0, 0, 0, 0)', // Transparent data points
+				  },
+				],
+			  };
+			  
+			  // Get canvas context
+			  const ctx = document.getElementById('myChart' + i).getContext('2d');
+			  
+			  // Create chart
+			  const myChart = new Chart(ctx, {
+				type: 'line',
+				data: chartData,
+				options: {
+				  scales: {
+					y: {
+					  beginAtZero: false,
+					},
+				  },
+				  plugins: {
+					legend: {
+					  labels: {
+						color: 'black', // Black legend text color
+					  },
+					},
+				  },
+				},
+			  });
 		});
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	}

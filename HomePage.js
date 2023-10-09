@@ -73,25 +73,25 @@ async function displayUserInfo(assetData) {
         const row = document.createElement('tr');
 
         // Create and append the first column (Stocks) with the specified ID
-        const stocksColumn = document.createElement('th');
+        const stocksColumn = document.createElement('td');
         stocksColumn.id = 'stockTicker' + i;
         stocksColumn.textContent = assetData[i].asset;
         row.appendChild(stocksColumn);
 
         // Create and append the second column (Current Price) with the specified ID
-        const priceColumn = document.createElement('th');
+        const priceColumn = document.createElement('td');
         priceColumn.id = 'currentPrice' + i;
         priceColumn.textContent = currentPrice;
         row.appendChild(priceColumn);
 
         // Create and append the third column (Shares) with the specified ID
-        const sharesColumn = document.createElement('th');
+        const sharesColumn = document.createElement('td');
         sharesColumn.id = 'shares' + i;
         sharesColumn.textContent = assetData[i].amount;
         row.appendChild(sharesColumn);
 
         // Create and append the fourth column (Total Value) with the specified ID
-        const totalValueColumn = document.createElement('th');
+        const totalValueColumn = document.createElement('td');
         totalValueColumn.id = 'totalValue' + i;
         totalValueColumn.textContent = assetData[i].amount*currentPrice;
         console.log(totalValue + " before we add stock price");
@@ -101,7 +101,7 @@ async function displayUserInfo(assetData) {
         // Append the row to the table
         table.appendChild(row);
 
-        document.getElementById('totalValue').innerText = totalValue;
+        document.getElementById('totalValue').innerText = "$" + totalValue;
 
       } catch (error) {
         console.error(error);
