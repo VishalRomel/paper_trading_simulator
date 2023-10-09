@@ -56,15 +56,53 @@ async function getCurrentPrice(ticker) {
 }
 
 async function displayUserInfo(assetData) {
+  //table to display user's stocks
+  const table = document.getElementById('stockList');
+  var totalValue = 0;
   for (let i = 0; i < assetData.length; i++) {
     if (assetData[i].asset === "$") {
       document.getElementById("dollarAmount").innerText = "$" + assetData[i].amount;
+      totalValue += assetData[i].amount;
+      console.log("total value: after cash added" + totalValue);
     } else {
       // Here, you can directly await the result of getCurrentPrice
       try {
         let currentPrice = await getCurrentPrice(assetData[i].asset);
         console.log(currentPrice + " this is the current price");
-        document.getElementById("stockPrice").innerText = "$" + currentPrice;
+
+        const row = document.createElement('tr');
+
+        // Create and append the first column (Stocks) with the specified ID
+        const stocksColumn = document.createElement('th');
+        stocksColumn.id = 'stockTicker' + i;
+        stocksColumn.textContent = assetData[i].asset;
+        row.appendChild(stocksColumn);
+
+        // Create and append the second column (Current Price) with the specified ID
+        const priceColumn = document.createElement('th');
+        priceColumn.id = 'currentPrice' + i;
+        priceColumn.textContent = currentPrice;
+        row.appendChild(priceColumn);
+
+        // Create and append the third column (Shares) with the specified ID
+        const sharesColumn = document.createElement('th');
+        sharesColumn.id = 'shares' + i;
+        sharesColumn.textContent = assetData[i].amount;
+        row.appendChild(sharesColumn);
+
+        // Create and append the fourth column (Total Value) with the specified ID
+        const totalValueColumn = document.createElement('th');
+        totalValueColumn.id = 'totalValue' + i;
+        totalValueColumn.textContent = assetData[i].amount*currentPrice;
+        console.log(totalValue + " before we add stock price");
+        totalValue = totalValue + assetData[i].amount*currentPrice;
+        row.appendChild(totalValueColumn);
+
+        // Append the row to the table
+        table.appendChild(row);
+
+        document.getElementById('totalValue').innerText = totalValue;
+
       } catch (error) {
         console.error(error);
       }

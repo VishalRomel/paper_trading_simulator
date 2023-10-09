@@ -258,7 +258,7 @@ table {
 
 
 .stocks tr:hover {
-  background-color: #da0000;
+  background-color: #0dff00;
   transition: background-color 0.5s ease-in;
 }
 
@@ -291,4 +291,11 @@ table {
     box-shadow: 0 0 4px #0dff00, 0 0 2px #0dff00, 0 0 2px #0dff00;
     /* Increased spread radius for glowing effect */
   }
+}
+
+
+
+.stockBox {
+  background-color: green; /* Set the background color to green */
+  color: white; /* Set the text color to white for better visibility */
 }
