@@ -20,6 +20,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const auth = getAuth();
+
+
 let signUp = document.getElementById("signUp");
 signUp.addEventListener('click', (e) =>{
     var email = document.getElementById('email').value;
@@ -47,19 +49,25 @@ signUp.addEventListener('click', (e) =>{
 
 let login = document.getElementById('login');
 login.addEventListener('click', (e) => {
+    e.preventDefault(); // Prevent the default form submission behavior
+
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
+    
     signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
-        alert('user logged in');
-        // ...
+        console.log(user);
+        localStorage.setItem('loggedInUser', JSON.stringify(user));
+
+        window.location.href = "HomePage.html";
+
     })
     .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        alert('Error mesage' + errorMessage + errorCode);
+        alert('Error message: ' + errorMessage + ' (' + errorCode + ')');
     });
 });
 
@@ -76,16 +84,16 @@ onAuthStateChanged(auth, (user) => {
     }
 });
 
-logout = document.getElementById('logout');
-logout.addEventListener('click', () =>{
+// logout = document.getElementById('logout');
+// logout.addEventListener('click', () =>{
 
-    signOut(auth).then(() => {
-        // Sign-out successful.
-        alert('user logged out');
-      }).catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        alert('Error mesage' + errorMessage + errorCode);
-        // An error happened.
-      });
-})
+//     signOut(auth).then(() => {
+//         // Sign-out successful.
+//         alert('user logged out');
+//       }).catch((error) => {
+//         const errorCode = error.code;
+//         const errorMessage = error.message;
+//         alert('Error mesage' + errorMessage + errorCode);
+//         // An error happened.
+//       });
+// })
