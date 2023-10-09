@@ -66,7 +66,7 @@ if (loggedInUser) {
             const assetData = snapshot.val();
             console.log("user's " + userUID + " asset data:   " + assetData);
             // Do something with assetData, which will be an array
-            user_stocks_array = [];
+            let user_stocks_array = [];
             for (let i = 0; i < assetData.length; i++) {
               if (assetData[i].asset === "$") {
                 document.getElementById("dollarAmount").innerText ="$" +  assetData[i].amount;
@@ -86,7 +86,6 @@ if (loggedInUser) {
     }
   // Use the user information to personalize the dashboard content or perform actions.
   // For example, display the user's email on the dashboard.
-  console.log('user\'s stocks: ', user_stocks_array)
   document.getElementById('displayEmail').innerText = "Hello:  " + userEmail;
   document.getElementById('currentDate').innerText = getCurrentDateString();
 
