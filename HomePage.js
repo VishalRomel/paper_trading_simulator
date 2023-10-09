@@ -33,6 +33,46 @@ function getCurrentDateString() {
   return dateString;
 }
 
+
+// //The following code is used to get the current price for a given ticker:
+
+// import axios from 'axios';
+
+
+async function getCurrentPrice(ticker) {
+  const API_KEY = 'EN3735MN44LA7F35';
+  const url = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${ticker}&apikey=${API_KEY}`;
+  
+  try {
+    const response = await axios.get(url);
+    console.log(response.data);
+    const price = response.data['Global Quote']['05. price'];
+    console.log(price);
+    return price;
+  } catch (error) {
+    console.error(error);
+    throw error; // Re-throw the error to handle it elsewhere if needed
+  }
+}
+
+async function displayUserInfo(assetData) {
+  for (let i = 0; i < assetData.length; i++) {
+    if (assetData[i].asset === "$") {
+      document.getElementById("dollarAmount").innerText = "$" + assetData[i].amount;
+    } else {
+      // Here, you can directly await the result of getCurrentPrice
+      try {
+        let currentPrice = await getCurrentPrice(assetData[i].asset);
+        console.log(currentPrice + " this is the current price");
+        document.getElementById("stockPrice").innerText = "$" + currentPrice;
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }
+}
+
+
 const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
 const loggedIn = localStorage.getItem('loggedIn');
 
@@ -66,16 +106,7 @@ if (loggedInUser) {
             const assetData = snapshot.val();
             console.log("user's " + userUID + " asset data:   " + assetData);
             // Do something with assetData, which will be an array
-            let user_stocks_array = [];
-            for (let i = 0; i < assetData.length; i++) {
-              if (assetData[i].asset === "$") {
-                document.getElementById("dollarAmount").innerText ="$" +  assetData[i].amount;
-              }
-              else{
-                //TO-D0: here is where i should probably add the code to add the stocks to table with their prices
-                user_stocks_array.push(assetData[i].asset);
-              }
-            }
+            displayUserInfo(assetData);
           } else {
             console.log("No data available for this user");
           }

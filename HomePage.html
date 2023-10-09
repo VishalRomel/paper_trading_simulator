@@ -8,6 +8,8 @@
   <title>Homepage</title>
   <link href="HomePage.css" rel="stylesheet" type="text/css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.2/lottie.min.js"></script>
+  <!-- Included axios for making requests to backend server-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 
 </head>
 
@@ -68,18 +70,18 @@
 
   <div width="100%" class="portfolio">
     <div class="stockList">
-      <table width="100%" class="stocks">
+      <table width="100%" class="stocks" id = "stockList">
 
         <tr>
           <th>Stocks</th>
-          <th>Current Value</th>
-          <th>Value When You Bought</th>
-          <th>Value Changed</th>
+          <th>Current Price</th>
+          <th>Shares</th>
+          <th>Total Value</th>
         </tr>
 
         <tr id="StockBox">
           <td>stock 1</td>
-          <td>Place Holder</td>
+          <td id = "stockPrice">Place Holder</td>
           <td>Place Holder</td>
           <td># %</td>
         </tr>
@@ -110,162 +112,6 @@
           <td>Place Holder</td>
           <td># %</td>
         </tr>
-
-        <tr>
-          <td>stock 2</td>
-          <td>Place Holder</td>
-          <td>Place Holder</td>
-          <td># %</td>
-        </tr>
-
-        <tr>
-          <td>stock 2</td>
-          <td>Place Holder</td>
-          <td>Place Holder</td>
-          <td># %</td>
-        </tr>
-
-        <tr>
-          <td>stock 2</td>
-          <td>Place Holder</td>
-          <td>Place Holder</td>
-          <td># %</td>
-        </tr>
-
-        <tr>
-          <td>stock 2</td>
-          <td>Place Holder</td>
-          <td>Place Holder</td>
-          <td># %</td>
-        </tr>
-
-        <tr>
-          <td>stock 2</td>
-          <td>Place Holder</td>
-          <td>Place Holder</td>
-          <td># %</td>
-        </tr>
-
-        <tr>
-          <td>stock 2</td>
-          <td>Place Holder</td>
-          <td>Place Holder</td>
-          <td># %</td>
-        </tr>
-
-        <tr>
-          <td>stock 2</td>
-          <td>Place Holder</td>
-          <td>Place Holder</td>
-          <td># %</td>
-        </tr>
-
-        <tr>
-          <td>stock 2</td>
-          <td>Place Holder</td>
-          <td>Place Holder</td>
-          <td># %</td>
-        </tr>
-
-        <tr>
-          <td>stock 2</td>
-          <td>Place Holder</td>
-          <td>Place Holder</td>
-          <td># %</td>
-        </tr>
-
-        <tr>
-          <td>stock 2</td>
-          <td>Place Holder</td>
-          <td>Place Holder</td>
-          <td># %</td>
-        </tr>
-
-        <tr>
-          <td>stock 2</td>
-          <td>Place Holder</td>
-          <td>Place Holder</td>
-          <td># %</td>
-        </tr>
-
-        <tr>
-          <td>stock 2</td>
-          <td>Place Holder</td>
-          <td>Place Holder</td>
-          <td># %</td>
-        </tr>
-
-        <tr>
-          <td>stock 2</td>
-          <td>Place Holder</td>
-          <td>Place Holder</td>
-          <td># %</td>
-        </tr>
-
-        <tr>
-          <td>stock 2</td>
-          <td>Place Holder</td>
-          <td>Place Holder</td>
-          <td># %</td>
-        </tr>
-
-        <tr>
-          <td>stock 2</td>
-          <td>Place Holder</td>
-          <td>Place Holder</td>
-          <td># %</td>
-        </tr>
-
-        <tr>
-          <td>stock 2</td>
-          <td>Place Holder</td>
-          <td>Place Holder</td>
-          <td># %</td>
-        </tr>
-
-        <tr>
-          <td>stock 2</td>
-          <td>Place Holder</td>
-          <td>Place Holder</td>
-          <td># %</td>
-        </tr>
-
-        <tr>
-          <td>stock 2</td>
-          <td>Place Holder</td>
-          <td>Place Holder</td>
-          <td># %</td>
-        </tr>
-
-        <tr>
-          <td>stock 2</td>
-          <td>Place Holder</td>
-          <td>Place Holder</td>
-          <td># %</td>
-        </tr>
-
-        <tr>
-          <td>stock 2</td>
-          <td>Place Holder</td>
-          <td>Place Holder</td>
-          <td># %</td>
-        </tr>
-
-        <tr>
-          <td>stock 2</td>
-          <td>Place Holder</td>
-          <td>Place Holder</td>
-          <td># %</td>
-        </tr>
-
-        <tr>
-          <td>stock 2</td>
-          <td>Place Holder</td>
-          <td>Place Holder</td>
-          <td># %</td>
-        </tr>
-
-
 
       </table>
 
