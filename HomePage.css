@@ -299,3 +299,7 @@ table {
   background-color: green; /* Set the background color to green */
   color: white; /* Set the text color to white for better visibility */
 }
+
+a{
+  color: #0dff00;
+}

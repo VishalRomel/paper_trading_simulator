@@ -101,12 +101,11 @@ async function displayUserInfo(assetData) {
         // Append the row to the table
         table.appendChild(row);
 
-        document.getElementById('totalValue').innerText = "$" + totalValue;
-
       } catch (error) {
         console.error(error);
       }
     }
+    document.getElementById('totalValue').innerText = "$" + totalValue;
   }
 }
 
@@ -132,6 +131,7 @@ if (loggedInUser) {
       set(ref(database, 'user_assets/' + userUID), {
         assets: assetData
       })
+      displayUserInfo(assetData);
     }
     else{
       // Reference to the user's assets
