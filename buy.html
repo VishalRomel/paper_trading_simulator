@@ -10,6 +10,7 @@
 </head>
 
 <body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
   <div class="sideBar">
     <ul>
       <div id="logo">
@@ -36,7 +37,7 @@
   </div>
 
   <div width="100%" id="greeting">
-    <h1>Hello, [name]!</h1>
+    <h1 id = "displayEmail">Hello, [name]!</h1>
   </div>
 
   <div id="test" class="infoBar">
@@ -47,44 +48,29 @@
         <th colspan="2">Buying power</th>
       </tr>
       <tr class="topBar">
-        <td colspan="2">$1,000,000</th>
+        <td colspan="2" id = "totalValue">$1,000,000</th>
         <td colspan="2" id="currentDate">[data]</th>
-        <td colspan="2">[data]</th>
+        <td colspan="2" id = "dollarAmount">[data]</th>
       </tr>
     </table>
   </div>
 
   <div width="100%" class="portfolio">
     <div class="stockList">
-      <table width="100%" class="stocks">
+      <table width="100%" class="stocks" id = "stockList"> 
         <tr>
           <th>Stocks</th>
           <th>Current Value</th>
           <th>Purchase</th>
         </tr>
         <tr>
-          <td>stock 1</td>
-          <td>Place Holder</td>
-          <td><button>Buy</button></td>
-        </tr>
-        <tr>
-          <td>stock 2</td>
-          <td>Place Holder</td>
-          <td><button>Buy</button></td>
-        </tr>
       </table>
 
     </div>
 
   </div>
 
-
-
-
-  <script src="script.js"></script>
-
-
-
+  <script type = "module" src="buyPage.js"></script>
 </body>
 
 </html>
