@@ -36,6 +36,10 @@ function getCurrentDateString() {
   return dateString;
 }
 
+function handleBuyBtnClick(stockIndex, stockTicker) {
+    localStorage.setItem("buyBtn", stockTicker);
+    window.location.href = "stockPurchase.html";
+}
 
 //The following code is used to get the current price for a given ticker:
 async function getCurrentPrice(ticker) {
@@ -44,9 +48,7 @@ async function getCurrentPrice(ticker) {
   
   try {
     const response = await axios.get(url);
-    console.log(response.data);
     const price = response.data['Global Quote']['05. price'];
-    console.log(price);
     return price;
   } catch (error) {
     console.error(error);
@@ -56,11 +58,13 @@ async function getCurrentPrice(ticker) {
 
 async function displayUserInfo(assetData) {
   //table to display user's stocks
-  const table = document.getElementById('stockList');
+  const table = document.getElementById('stockListTable');
   var totalValue = 0;
   for (let i = 0; i < assetData.length; i++) {
     if (assetData[i].asset === "$") {
       document.getElementById("dollarAmount").innerText = "$" + assetData[i].amount;
+      localStorage.setItem('buyingPower', assetData[i].amount);
+      console.log('set local storage buying power ', localStorage.getItem('buyingPower'),'something else');
       totalValue += assetData[i].amount;
     } else {
       // Here, you can directly await the result of getCurrentPrice
@@ -95,6 +99,9 @@ async function displayUserInfo(assetData) {
         purchaseBtn.id = "buyButton" + i;
         purchaseBtn.textContent = "Buy";
         purchaseTd.appendChild(purchaseBtn);
+        purchaseBtn.addEventListener("click", function() {
+            handleBuyBtnClick(i, ticker);  
+          });
     
         row.appendChild(tickerTd);
         row.appendChild(priceTd); 
@@ -119,7 +126,6 @@ if (loggedInUser) {
     .then((snapshot) => {
         if (snapshot.exists()) {
         const assetData = snapshot.val();
-        console.log("user's " + userUID + " asset data:   " + assetData);
         // Do something with assetData, which will be an array
         displayUserInfo(assetData);
         } else {

@@ -1,0 +1,64 @@
+/* Stock Popup Overlay */
+.stock-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Stock Popup Container */
+.stock-popup {
+    background: black;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 300px;
+}
+
+/* Stock Popup Header */
+.stock-popup h2 {
+    color: green;
+}
+
+/* Stock Popup Label */
+.stock-popup label {
+    color: red;
+}
+
+/* Stock Popup Input */
+.stock-popup input[type="number"] {
+    background: green;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+/* Stock Popup Submit Button */
+.stock-popup button {
+    background: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Stock Popup Close Button */
+.stock-popup .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}

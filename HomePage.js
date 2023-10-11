@@ -120,6 +120,7 @@ if (loggedInUser) {
 
     //new user set initial properties for database table/node user_assets
     if(loggedIn == "false"){
+      localStorage.setItem('loggedIn', true);
       console.log("logged In status is false");
       const assetData = [
         {
