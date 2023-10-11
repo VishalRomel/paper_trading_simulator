@@ -33,6 +33,29 @@ function getCurrentDateString() {
   return dateString;
 }
 
+function formatDollars(amount) {
+
+  // Convert input to string
+  let strAmount = amount.toString();
+
+  // Split on decimal to get whole and decimal parts
+  let [whole, decimal] = strAmount.split(".");
+
+  // Add commas to whole part
+  whole = whole.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+  // If there is a decimal part, re-add decimal point and decimal
+  if (decimal) {
+    strAmount = `${whole}.${decimal}`;
+  } else {
+    strAmount = whole;
+  }
+
+  // Add dollar sign and return
+  return "$" + strAmount; 
+
+}
+
 
 // //The following code is used to get the current price for a given ticker:
 
@@ -61,7 +84,7 @@ async function displayUserInfo(assetData) {
   var totalValue = 0;
   for (let i = 0; i < assetData.length; i++) {
     if (assetData[i].asset === "$") {
-      document.getElementById("dollarAmount").innerText = "$" + assetData[i].amount;
+      document.getElementById("dollarAmount").innerText = formatDollars(Math.floor(assetData[i].amount));
       totalValue += assetData[i].amount;
       console.log("total value: after cash added" + totalValue);
     } else {
@@ -81,7 +104,7 @@ async function displayUserInfo(assetData) {
         // Create and append the second column (Current Price) with the specified ID
         const priceColumn = document.createElement('td');
         priceColumn.id = 'currentPrice' + i;
-        priceColumn.textContent = currentPrice;
+        priceColumn.textContent = formatDollars(currentPrice);
         row.appendChild(priceColumn);
 
         // Create and append the third column (Shares) with the specified ID
@@ -93,7 +116,7 @@ async function displayUserInfo(assetData) {
         // Create and append the fourth column (Total Value) with the specified ID
         const totalValueColumn = document.createElement('td');
         totalValueColumn.id = 'totalValue' + i;
-        totalValueColumn.textContent = assetData[i].amount*currentPrice;
+        totalValueColumn.textContent = formatDollars(assetData[i].amount*currentPrice);
         console.log(totalValue + " before we add stock price");
         totalValue = totalValue + assetData[i].amount*currentPrice;
         row.appendChild(totalValueColumn);
@@ -105,7 +128,7 @@ async function displayUserInfo(assetData) {
         console.error(error);
       }
     }
-    document.getElementById('totalValue').innerText = "$" + totalValue;
+    document.getElementById('totalValue').innerText = formatDollars(Math.floor(totalValue));
   }
 }
 

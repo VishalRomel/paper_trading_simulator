@@ -36,6 +36,29 @@ function getCurrentDateString() {
   return dateString;
 }
 
+function formatDollars(amount) {
+
+    // Convert input to string
+    let strAmount = amount.toString();
+  
+    // Split on decimal to get whole and decimal parts
+    let [whole, decimal] = strAmount.split(".");
+  
+    // Add commas to whole part
+    whole = whole.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  
+    // If there is a decimal part, re-add decimal point and decimal
+    if (decimal) {
+      strAmount = `${whole}.${decimal}`;
+    } else {
+      strAmount = whole;
+    }
+  
+    // Add dollar sign and return
+    return "$" + strAmount; 
+  
+}
+
 function handleBuyBtnClick(stockIndex, stockTicker) {
     localStorage.setItem("buyBtn", stockTicker);
     window.location.href = "stockPurchase.html";
@@ -62,7 +85,7 @@ async function displayUserInfo(assetData) {
   var totalValue = 0;
   for (let i = 0; i < assetData.length; i++) {
     if (assetData[i].asset === "$") {
-      document.getElementById("dollarAmount").innerText = "$" + assetData[i].amount;
+      document.getElementById("dollarAmount").innerText = formatDollars(Math.floor(assetData[i].amount));
       localStorage.setItem('buyingPower', assetData[i].amount);
       console.log('set local storage buying power ', localStorage.getItem('buyingPower'),'something else');
       totalValue += assetData[i].amount;
@@ -76,7 +99,7 @@ async function displayUserInfo(assetData) {
       }
     }
   }
-  document.getElementById('totalValue').innerText = "$" + totalValue;
+    document.getElementById('totalValue').innerText =  formatDollars(Math.floor(totalValue));
 
     for (let i = 0; i < tickers.length; i++) {
         const ticker = tickers[i];
@@ -90,7 +113,8 @@ async function displayUserInfo(assetData) {
         const priceTd = document.createElement("td");
         priceTd.id = "currentPrice" + i;
         // add current price dynamically 
-        priceTd.textContent = await getCurrentPrice(ticker);
+        let number = await getCurrentPrice(ticker);
+        priceTd.textContent = formatDollars(number);
 
         const purchaseTd = document.createElement("td");
         purchaseTd.id = "purchase" + i;
@@ -110,7 +134,6 @@ async function displayUserInfo(assetData) {
         table.appendChild(row);
     }
 }
-
 
 const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
 const loggedIn = localStorage.getItem('loggedIn');
