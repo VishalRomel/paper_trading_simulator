@@ -52,8 +52,10 @@ submitButton.addEventListener("click", function(event) {
     //check if the use has enough money to complete the request
     const buyingPower = localStorage.getItem('buyingPower')
     console.log('buyingPower', buyingPower)
-
-    if(buyingPower < currentPrice*amountOfShares){
+    if(amountOfShares <= 0){
+        alert('Please enter positive amount of shares');
+    }
+    else if(buyingPower < currentPrice*amountOfShares){
         alert('not enough available balance to complete the transaction')
     }
     else {

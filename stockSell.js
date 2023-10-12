@@ -50,6 +50,9 @@ submitButton.addEventListener("click", function(event) {
     if(shares < amountOfSharesToSell){
         alert('not enough available shares. You only have ' + shares + ' shares available. trying to sell ' + amountOfSharesToSell);
     }
+    else if(amountOfSharesToSell <= 0){
+        alert('Enter positive amount of shares to sell');
+    }
     else {
         // TO-DO: Check if the user already has  a share with this ticker and update the amount of shares in database
         // Fetch the asset data
