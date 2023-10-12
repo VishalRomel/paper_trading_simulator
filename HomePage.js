@@ -53,7 +53,15 @@ function formatDollars(amount) {
 
   // Add dollar sign and return
   return "$" + strAmount; 
+}
 
+async function sellButtonClickHandler(ticker, shares, currentPrice){
+  localStorage.setItem('sellTicker', ticker);
+  localStorage.setItem('SharesAvail', shares);
+  localStorage.setItem('sellCurrentPrice', currentPrice);
+
+  console.log('selling ' + ticker + 'shares availabk' + shares);
+  window.location.href = 'stockSell.html';
 }
 
 
@@ -85,6 +93,7 @@ async function displayUserInfo(assetData) {
   for (let i = 0; i < assetData.length; i++) {
     if (assetData[i].asset === "$") {
       document.getElementById("dollarAmount").innerText = formatDollars(Math.floor(assetData[i].amount));
+      localStorage.setItem('buyingPower', assetData[i].amount);
       totalValue += assetData[i].amount;
       console.log("total value: after cash added" + totalValue);
     } else {
@@ -121,6 +130,18 @@ async function displayUserInfo(assetData) {
         totalValue = totalValue + assetData[i].amount*currentPrice;
         row.appendChild(totalValueColumn);
 
+        const sellButtonRow = document.createElement('td');
+        const sellButton = document.createElement('button');
+        sellButton.id = 'sellButton' + i;
+        sellButton.textContent = "sell shares";
+
+        sellButton.addEventListener('click', () => {
+          sellButtonClickHandler(assetData[i].asset, assetData[i].amount, currentPrice) 
+        });
+        sellButtonRow.appendChild(sellButton);
+        row.appendChild(sellButtonRow);
+
+
         // Append the row to the table
         table.appendChild(row);
 
@@ -156,6 +177,7 @@ if (loggedInUser) {
         assets: assetData
       })
       displayUserInfo(assetData);
+      localStorage.setItem('buyingPower', 1000000);
     }
     else{
       // Reference to the user's assets

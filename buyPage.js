@@ -71,6 +71,7 @@ async function getCurrentPrice(ticker) {
   
   try {
     const response = await axios.get(url);
+    console.log(response.data);
     const price = response.data['Global Quote']['05. price'];
     return price;
   } catch (error) {
